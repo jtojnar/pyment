@@ -1,0 +1,21 @@
+--- a/mypaint.py
++++ b/mypaint.py
+@@ -1,12 +1,15 @@
+ def func1(param1):
+     """
+-    :param param1:
+-        foo bar
++
++    :param param1: foo bar
++
+     """
+     pass
+ 
+ def func2(param1):
+     """
+-    :param float param2; foo bar
++
++    :param param1: 
++
+     """
+     pass

@@ -987,6 +987,7 @@ class DocsTools(object):
                     param_part, param_description = line.split(':', 1)
                 else:
                     print("WARNING: malformed docstring parameter")
+                    continue
                 res = re.split(r'\s+', param_part.strip())
                 if len(res) == 1:
                     param_name = res[0].strip()
@@ -1032,9 +1033,15 @@ class DocsTools(object):
             else:
                 # suppose to be line of a multiline element
                 if last_element['nature'] == 'param':
-                    ret[last_element['name']]['description'] += f"\n{line}"
+                    if ret[last_element['name']]['description'] is None:
+                        ret[last_element['name']]['description'] = line
+                    else:
+                        ret[last_element['name']]['description'] += f"\n{line}"
                 elif last_element['nature'] == 'type':
-                    ret[last_element['name']]['description'] += f"\n{line}"
+                    if ret[last_element['name']]['description'] is None:
+                        ret[last_element['name']]['description'] = line
+                    else:
+                        ret[last_element['name']]['description'] += f"\n{line}"
         return ret
 
     def _extract_not_tagstyle_old_way(self, data):

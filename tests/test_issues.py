@@ -307,6 +307,15 @@ class IssuesTests(unittest.TestCase):
         f.close()
         self.assertEqual(''.join(p.diff()), patch)
 
+    def testMypaint(self):
+        # Title: Crash when multiline description starts on next line
+        p = pym.PyComment(absdir('mypaint.py'))
+        p._parse()
+        f = open(absdir('mypaint.py.patch'))
+        patch = f.read()
+        f.close()
+        self.assertEqual(''.join(p.diff()), patch)
+
 
 def main():
     unittest.main()
